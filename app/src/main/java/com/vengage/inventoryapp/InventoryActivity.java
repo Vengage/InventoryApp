@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -32,5 +34,21 @@ public class InventoryActivity extends AppCompatActivity {
         View emptyView = findViewById(R.id.empty_view);
         mProductsListView.setEmptyView(emptyView);
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_inventory, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_insert_dummy_data:
+                return true;
+            case R.id.action_delete_all_entries:
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

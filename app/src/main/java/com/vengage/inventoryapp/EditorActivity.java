@@ -3,9 +3,12 @@ package com.vengage.inventoryapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -117,5 +120,33 @@ public class EditorActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(emailIntent, "Send Email"));
             }
         });
+
+        // Select an image for the product
+        mProductImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_editor, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                return true;
+            case R.id.action_delete:
+                return true;
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(EditorActivity.this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

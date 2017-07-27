@@ -10,4 +10,8 @@
     <string name="product_supplier">Supplier</string>
     <string name="product_supplier_name">Name</string>
     <string name="product_supplier_email">Email</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_insert_dummy_product">Insert dummy product</string>
+    <string name="action_delete_all_products">Delete all products</string>
 </resources>
