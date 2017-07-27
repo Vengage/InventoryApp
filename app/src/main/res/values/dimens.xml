@@ -2,4 +2,9 @@
 <resources>
     <dimen name="margin_padding_16dp">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_size_24sp">24sp</dimen>
+    <dimen name="product_image_width_height">150dp</dimen>
+    <dimen name="margin_padding_4dp">4dp</dimen>
+    <dimen name="send_email_button_width_height">64dp</dimen>
+    <dimen name="no_products_empty_view_width_height">100dp</dimen>
 </resources>

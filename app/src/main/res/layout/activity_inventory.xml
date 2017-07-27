@@ -1,34 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.vengage.inventoryapp.InventoryActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <ListView
+        android:id="@+id/list_view_products"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_centerInParent="true">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        <ImageView
+            android:id="@+id/empty_list_image"
+            android:layout_width="@dimen/no_products_empty_view_width_height"
+            android:layout_height="@dimen/no_products_empty_view_width_height"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_item_no_buy"/>
 
-    </android.support.design.widget.AppBarLayout>
+        <TextView
+            android:id="@+id/empty_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/empty_list_image"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:paddingTop="16dp"
+            android:text="@string/there_are_no_products"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
-    <include layout="@layout/content_inventory"/>
+        <TextView
+            android:id="@+id/empty_subtitle_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/empty_title_text"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif"
+            android:paddingTop="8dp"
+            android:text="@string/start_adding_products"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@mipmap/ic_add"/>
-
-</android.support.design.widget.CoordinatorLayout>
+        android:src="@mipmap/ic_add"/>
+</RelativeLayout>
