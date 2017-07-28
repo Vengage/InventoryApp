@@ -7,17 +7,15 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.support.annotation.IntegerRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import static com.vengage.inventoryapp.data.ProductContract.PATH_PRODUCTS;
 import static com.vengage.inventoryapp.data.ProductContract.ProductEntry;
 
 /**
  * Created by Vengage on 7/27/2017.
- *
+ * <p>
  * ProductProvider class
  */
 
@@ -64,7 +62,7 @@ public class ProductProvider extends ContentProvider {
         Cursor cursor;
 
         int match = sUriMatcher.match(uri);
-        switch (match){
+        switch (match) {
             case PRODUCTS:
                 cursor = database.query(ProductEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
@@ -105,7 +103,7 @@ public class ProductProvider extends ContentProvider {
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
         final int match = sUriMatcher.match(uri);
-        switch (match){
+        switch (match) {
             case PRODUCTS:
                 return insertProduct(uri, contentValues);
             default:
@@ -120,32 +118,32 @@ public class ProductProvider extends ContentProvider {
         // First we check that all of the required fields are set before insert
         // Check if product name was set
         String productName = contentValues.getAsString(ProductEntry.COLUMN_PRODUCT_NAME);
-        if(TextUtils.isEmpty(productName)){
+        if (TextUtils.isEmpty(productName)) {
             throw new IllegalArgumentException("Product requires a name");
         }
         // Check if the product Image was set
         byte[] productImage = contentValues.getAsByteArray(ProductEntry.COLUMN_PRODUCT_IMAGE);
-        if(productImage.length == 0){
+        if (productImage.length == 0) {
             throw new IllegalArgumentException("Product requires an image");
         }
         // Check if the product price was set
         String productPrice = contentValues.getAsString(ProductEntry.COLUMN_PRODUCT_PRICE);
-        if(TextUtils.isEmpty(productPrice)){
+        if (TextUtils.isEmpty(productPrice)) {
             throw new IllegalArgumentException("Product requires a price");
         }
         // Check if the product quantity was set
         String productQuantity = contentValues.getAsString(ProductEntry.COLUMN_PRODUCT_QUANTITY);
-        if(TextUtils.isEmpty(productQuantity)){
+        if (TextUtils.isEmpty(productQuantity)) {
             throw new IllegalArgumentException("Product quantity needs to be set");
         }
         // Check if the product supplier name was set
         String productSupplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPPLIER_NAME);
-        if(TextUtils.isEmpty(productSupplierName)){
+        if (TextUtils.isEmpty(productSupplierName)) {
             throw new IllegalArgumentException("Product supplier name needs to be set");
         }
         // Check if the product supplier email address was set
         String productSupplierEmail = contentValues.getAsString(ProductEntry.COLUMN_SUPPLIER_EMAIL);
-        if(TextUtils.isEmpty(productSupplierEmail)){
+        if (TextUtils.isEmpty(productSupplierEmail)) {
             throw new IllegalArgumentException("Product supplier email address needs to be set");
         }
 
@@ -169,7 +167,7 @@ public class ProductProvider extends ContentProvider {
         int rowsDeleted;
 
         final int match = sUriMatcher.match(uri);
-        switch (match){
+        switch (match) {
             case PRODUCTS:
                 rowsDeleted = database.delete(ProductEntry.TABLE_NAME, selection, selectionArgs);
                 break;
@@ -181,7 +179,7 @@ public class ProductProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Delete is not supported for " + uri);
         }
-        if(rowsDeleted != 0){
+        if (rowsDeleted != 0) {
             // Rows were deleted. Notify that the data has changed
             getContext().getContentResolver().notifyChange(uri, null);
         }
@@ -195,7 +193,7 @@ public class ProductProvider extends ContentProvider {
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues,
                       @Nullable String selection, @Nullable String[] selectionArgs) {
         final int match = sUriMatcher.match(uri);
-        switch (match){
+        switch (match) {
             case PRODUCTS:
                 return updateProduct(uri, contentValues, selection, selectionArgs);
             case PRODUCT_ID:
@@ -210,42 +208,42 @@ public class ProductProvider extends ContentProvider {
     private int updateProduct(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
         // First we check that all of the required fields are set before update
         // Check if product name was set
-        if(contentValues.containsKey(ProductEntry.COLUMN_PRODUCT_NAME)) {
+        if (contentValues.containsKey(ProductEntry.COLUMN_PRODUCT_NAME)) {
             String productName = contentValues.getAsString(ProductEntry.COLUMN_PRODUCT_NAME);
             if (TextUtils.isEmpty(productName)) {
                 throw new IllegalArgumentException("Product requires a name");
             }
         }
         // Check if the product Image was set
-        if(contentValues.containsKey(ProductEntry.COLUMN_PRODUCT_IMAGE)) {
+        if (contentValues.containsKey(ProductEntry.COLUMN_PRODUCT_IMAGE)) {
             byte[] productImage = contentValues.getAsByteArray(ProductEntry.COLUMN_PRODUCT_IMAGE);
             if (productImage.length == 0) {
                 throw new IllegalArgumentException("Product requires an image");
             }
         }
         // Check if the product price was set
-        if(contentValues.containsKey(ProductEntry.COLUMN_PRODUCT_PRICE)) {
+        if (contentValues.containsKey(ProductEntry.COLUMN_PRODUCT_PRICE)) {
             String productPrice = contentValues.getAsString(ProductEntry.COLUMN_PRODUCT_PRICE);
             if (TextUtils.isEmpty(productPrice)) {
                 throw new IllegalArgumentException("Product requires a price");
             }
         }
         // Check if the product quantity was set
-        if(contentValues.containsKey(ProductEntry.COLUMN_PRODUCT_QUANTITY)) {
+        if (contentValues.containsKey(ProductEntry.COLUMN_PRODUCT_QUANTITY)) {
             String productQuantity = contentValues.getAsString(ProductEntry.COLUMN_PRODUCT_QUANTITY);
             if (TextUtils.isEmpty(productQuantity)) {
                 throw new IllegalArgumentException("Product quantity needs to be set");
             }
         }
         // Check if the product supplier name was set
-        if(contentValues.containsKey(ProductEntry.COLUMN_SUPPLIER_NAME)) {
+        if (contentValues.containsKey(ProductEntry.COLUMN_SUPPLIER_NAME)) {
             String productSupplierName = contentValues.getAsString(ProductEntry.COLUMN_SUPPLIER_NAME);
             if (TextUtils.isEmpty(productSupplierName)) {
                 throw new IllegalArgumentException("Product supplier name needs to be set");
             }
         }
         // Check if the product supplier email address was set
-        if(contentValues.containsKey(ProductEntry.COLUMN_SUPPLIER_EMAIL)) {
+        if (contentValues.containsKey(ProductEntry.COLUMN_SUPPLIER_EMAIL)) {
             String productSupplierEmail = contentValues.getAsString(ProductEntry.COLUMN_SUPPLIER_EMAIL);
             if (TextUtils.isEmpty(productSupplierEmail)) {
                 throw new IllegalArgumentException("Product supplier email address needs to be set");
@@ -256,7 +254,7 @@ public class ProductProvider extends ContentProvider {
         int rowsUpdated = database.update(ProductEntry.TABLE_NAME, contentValues, selection, selectionArgs);
 
         // Notify that the data has changed
-        if(rowsUpdated != 0){
+        if (rowsUpdated != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
 

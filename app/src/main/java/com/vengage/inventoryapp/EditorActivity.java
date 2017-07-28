@@ -11,7 +11,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.BoolRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.LoaderManager;
@@ -194,7 +193,6 @@ public class EditorActivity extends AppCompatActivity
             // Hide the delete menu item
             invalidateOptionsMenu();
         }
-
     }
 
     @Override
@@ -299,7 +297,7 @@ public class EditorActivity extends AppCompatActivity
 
         // If nothing has changed close activity
         if (TextUtils.isEmpty(productName)
-                && (mCurrentProductUri==null && !((Boolean)mProductImage.getTag()))
+                && (mCurrentProductUri == null && !((Boolean) mProductImage.getTag()))
                 && TextUtils.isEmpty(productPrice)
                 && TextUtils.isEmpty(productQuantity)
                 && TextUtils.isEmpty(productSupplierName)
@@ -308,35 +306,35 @@ public class EditorActivity extends AppCompatActivity
         }
 
         // Check product name
-        if(TextUtils.isEmpty(productName)){
+        if (TextUtils.isEmpty(productName)) {
             Toast.makeText(EditorActivity.this, "Empty product name", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Check product price
-        if(TextUtils.isEmpty(productPrice)){
+        if (TextUtils.isEmpty(productPrice)) {
             Toast.makeText(EditorActivity.this, "Empty product price", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Check product quantity
-        if(TextUtils.isEmpty(productQuantity)){
+        if (TextUtils.isEmpty(productQuantity)) {
             Toast.makeText(EditorActivity.this, "Empty product quantity", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Check product supplier email
-        if(TextUtils.isEmpty(productSupplierEmail)){
+        if (TextUtils.isEmpty(productSupplierEmail)) {
             Toast.makeText(EditorActivity.this, "Empty product supplier email", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Check product supplier name
-        if(TextUtils.isEmpty(productSupplierName)){
+        if (TextUtils.isEmpty(productSupplierName)) {
             Toast.makeText(EditorActivity.this, "Empty product supplier name", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Check product image
-        if(mCurrentProductUri==null){
+        if (mCurrentProductUri == null) {
             Object object = mProductImage.getTag();
             boolean initImage = (Boolean) object;
-            if(!initImage){
+            if (!initImage) {
                 Toast.makeText(EditorActivity.this, "Empty product image", Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -374,7 +372,9 @@ public class EditorActivity extends AppCompatActivity
         }
     }
 
-    // Function that converts an imageView into a byte array in order to store it into the database
+    /**
+     * Function that converts an imageView into a byte array in order to store it into the database
+     */
     private byte[] imageViewToByteArray(ImageView image) {
         // Get the bitmap image from the imageView
         Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
@@ -403,19 +403,21 @@ public class EditorActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor productData) {
+        // If there is no data into the cursor return
         if (productData.getCount() < 1) return;
 
         // Move the cursor to the first row
         productData.moveToFirst();
-
+        // Get the values from the cursor
         String productName = productData.getString(productData.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME));
         byte[] productImage = productData.getBlob(productData.getColumnIndex(ProductEntry.COLUMN_PRODUCT_IMAGE));
         String productPrice = productData.getString(productData.getColumnIndex(ProductEntry.COLUMN_PRODUCT_PRICE));
         String productQuantity = productData.getString(productData.getColumnIndex(ProductEntry.COLUMN_PRODUCT_QUANTITY));
         String productSupplierName = productData.getString(productData.getColumnIndex(ProductEntry.COLUMN_SUPPLIER_NAME));
         String productSupplierEmail = productData.getString(productData.getColumnIndex(ProductEntry.COLUMN_SUPPLIER_EMAIL));
-
         Bitmap bitmap = BitmapFactory.decodeByteArray(productImage, 0, productImage.length);
+
+        // Set the values to the corresponding views
         mProductImage.setImageBitmap(bitmap);
         mProductName.setText(productName);
         mProductPrice.setText(productPrice);

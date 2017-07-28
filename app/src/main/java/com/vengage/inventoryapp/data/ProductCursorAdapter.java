@@ -23,13 +23,13 @@ import com.vengage.inventoryapp.data.ProductContract.ProductEntry;
  */
 
 public class ProductCursorAdapter extends CursorAdapter {
-
     // Context
     private Context mContext;
+    // Sale button OnClickListener
     private View.OnClickListener buttonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            // Get the id of the product
+            // Get the id of the product stored in the tag of the view
             Object object = view.getTag();
             long id = Long.parseLong(object.toString());
             // Get the current quantity of the product
@@ -84,6 +84,7 @@ public class ProductCursorAdapter extends CursorAdapter {
         mProductQuantity.setText(productQuantity);
 
         int productQuantityInteger = Integer.parseInt(productQuantity);
+        // Modify the sale button in case there are no products available
         if (productQuantityInteger == 0) {
             productBuy.setBackgroundResource(R.mipmap.ic_product_no_buy);
             productBuy.setEnabled(false);

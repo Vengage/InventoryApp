@@ -1,6 +1,5 @@
 package com.vengage.inventoryapp;
 
-import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -8,13 +7,13 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,17 +21,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.vengage.inventoryapp.data.ProductContract;
 import com.vengage.inventoryapp.data.ProductContract.ProductEntry;
 import com.vengage.inventoryapp.data.ProductCursorAdapter;
-import com.vengage.inventoryapp.data.ProductDbHelper;
 
 import java.io.ByteArrayOutputStream;
 
-import static android.R.attr.id;
-
 public class InventoryActivity extends AppCompatActivity
-    implements LoaderManager.LoaderCallbacks<Cursor> {
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     // Loader ID
     private static final int PRODUCT_LOADER_ID = 1;
@@ -100,7 +95,7 @@ public class InventoryActivity extends AppCompatActivity
     private void deleteProducts() {
         // Delete all of the products from the table
         int rowsDeleted = getContentResolver().delete(ProductEntry.CONTENT_URI, null, null);
-        if(rowsDeleted != 0){
+        if (rowsDeleted != 0) {
             Toast.makeText(this, R.string.all_products_deleted, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.delete_failed, Toast.LENGTH_SHORT).show();
