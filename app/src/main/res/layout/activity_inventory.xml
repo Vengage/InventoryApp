@@ -22,7 +22,7 @@
             android:layout_width="@dimen/no_products_empty_view_width_height"
             android:layout_height="@dimen/no_products_empty_view_width_height"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/ic_item_no_buy"/>
+            android:src="@mipmap/ic_product_no_buy"/>
 
         <TextView
             android:id="@+id/empty_title_text"

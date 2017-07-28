@@ -14,4 +14,23 @@
     <string name="action_delete">Delete</string>
     <string name="action_insert_dummy_product">Insert dummy product</string>
     <string name="action_delete_all_products">Delete all products</string>
+    <string name="title_edit_product">Edit Product</string>
+    <string name="title_add_product">Add Product</string>
+    <string name="error_save_product">Error with saving product</string>
+    <string name="product_saved">Product saved</string>
+    <string name="product_updated">Product updated</string>
+    <string name="error_update_product">Error with updating product</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="keep_editing">Keep editing</string>
+    <string name="discard">Discard</string>
+    <string name="delete_dialog_msg">Delete this product?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="product_deleted_successful">Product deleted</string>
+    <string name="product_deleted_unsuccessful">Error with deleting product</string>
+    <string name="all_products_deleted">All products deleted</string>
+    <string name="delete_failed">Delete failed</string>
+    <string name="quantity">Quantity:</string>
+    <string name="price">Price:</string>
+    <string name="incomplete_product_data">Incomplete product data</string>
 </resources>

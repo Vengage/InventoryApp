@@ -25,6 +25,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".InventoryActivity"/>>
         </activity>
+        <provider
+            android:authorities="com.vengage.inventoryapp.products"
+            android:name=".data.ProductProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>
